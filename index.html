@@ -1965,7 +1965,7 @@ function updateCertPreview() {
     <!-- Intro + Name -->
     <div style="position:absolute;top:148px;left:0;right:0;text-align:center;">
       <div style="font-size:7px;font-style:italic;color:#5C3310;">This is to gratefully acknowledge that</div>
-      <div style="font-size:16px;font-weight:700;color:#3A1E08;border-bottom:1px solid #B8882A;display:inline-block;padding:0 16px 2px;margin-top:4px;">${nameKn}</div>
+      <div style="font-size:16px;font-weight:700;color:#3A1E08;border-bottom:1px solid #B8882A;display:inline-block;padding:0 16px 2px;margin-top:4px;font-family:'Noto Sans Kannada','Noto Sans','Arial Unicode MS',sans-serif;">${nameKn}</div>
       <div style="font-size:8px;color:#5C3310;margin-top:2px;">${nameEn}</div>
     </div>
 
@@ -1984,14 +1984,13 @@ function updateCertPreview() {
       </div>
     </div>
 
-    <!-- Sanskrit after amount + Blessing -->
-    <div style="position:absolute;top:303px;left:30px;right:30px;height:0.5px;background:linear-gradient(90deg,transparent,#B8882A,transparent);"></div>
-    <div style="position:absolute;top:308px;left:0;right:0;text-align:center;font-size:9px;font-weight:700;color:#B8882A;letter-spacing:0.3px;">श्रीमन्मध्वाचार्य मूलमहासंस्थानम्</div>
-    <div style="position:absolute;top:322px;left:30px;right:30px;height:0.5px;background:linear-gradient(90deg,transparent,#B8882A,transparent);"></div>
-    <div style="position:absolute;top:328px;left:0;right:0;text-align:center;font-size:6.5px;color:#5C3310;">तत्र लोक्या गुरुः &nbsp;·&nbsp; "May the blessings of Gomata and Sri Vadiraja Gurusarvabhouma grace you always."</div>
+    <!-- Sanskrit after amount — small, dark, same size as English -->
+    <div style="position:absolute;top:306px;left:0;right:0;text-align:center;font-size:6.5px;color:#3A1E08;">
+      श्रीमन्मध्वाचार्य मूलमहासंस्थानम् &nbsp;·&nbsp; "May the blessings of Gomata and Sri Vadiraja Gurusarvabhouma grace you and your family always."
+    </div>
 
     <!-- Signatures -->
-    <div style="position:absolute;bottom:32px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-end;">
+    <div style="position:absolute;bottom:38px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-end;">
       <div style="text-align:center;width:90px;">
         <div style="width:70px;height:0.5px;background:#B8882A;margin:0 auto 3px;"></div>
         <div style="font-size:6.5px;color:#3A1E08;">ದಿನಾಂಕ: ${date}</div>
@@ -2007,6 +2006,9 @@ function updateCertPreview() {
         <div style="font-size:5.5px;color:#5C3310;">Authorised Signature</div>
       </div>
     </div>
+
+    <!-- ಗೋ ಅರ್ಪಣಂ ವಿಶ್ವ ಮಂಗಳಂ — between signatures and footer -->
+    <div style="position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:7.5px;font-weight:700;color:#B8882A;letter-spacing:0.5px;">ಗೋ ಅರ್ಪಣಂ ವಿಶ್ವ ಮಂಗಳಂ</div>
 
     <!-- Footer -->
     <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(135deg,#3A1E08,#5C3310);padding:4px 12px;display:flex;justify-content:space-between;align-items:center;">
@@ -2138,7 +2140,7 @@ function buildCertHTML(nameKn, nameEn, amount, date, year) {
 
     <div style="position:absolute;top:68mm;left:0;right:0;text-align:center;">
       <div style="font-size:8.5pt;font-style:italic;color:#5C3310;">This is to gratefully acknowledge that</div>
-      <div style="font-size:20pt;font-weight:700;color:#3A1E08;border-bottom:1.5pt solid #B8882A;display:inline-block;padding:0 8mm 1mm;margin-top:1mm;">${nameKn}</div>
+      <div style="font-size:20pt;font-weight:700;color:#3A1E08;border-bottom:1.5pt solid #B8882A;display:inline-block;padding:0 8mm 1mm;margin-top:1mm;font-family:'Noto Sans Kannada','Noto Sans','Arial Unicode MS',sans-serif;">${nameKn}</div>
       <div style="font-size:9pt;color:#5C3310;margin-top:1mm;">${nameEn}</div>
     </div>
 
@@ -2154,13 +2156,10 @@ function buildCertHTML(nameKn, nameEn, amount, date, year) {
       </div>
     </div>
 
-    <div style="position:absolute;top:116mm;left:0;right:0;height:0.5pt;background:linear-gradient(90deg,transparent,#B8882A,transparent);margin:0 14mm;"></div>
-    <div style="position:absolute;top:118mm;left:0;right:0;text-align:center;font-size:9pt;font-weight:700;color:#B8882A;letter-spacing:0.3px;">श्रीमन्मध्वाचार्य मूलमहासंस्थानम्</div>
-    <div style="position:absolute;top:125mm;left:0;right:0;height:0.5pt;background:linear-gradient(90deg,transparent,#B8882A,transparent);margin:0 14mm;"></div>
-    <div style="position:absolute;top:127mm;left:0;right:0;text-align:center;font-size:7pt;font-weight:700;color:#5C3310;">तत्र लोक्या गुरुः श्रीमन् मध्वाचार्य मूल महासंस्थानम्</div>
-    <div style="position:absolute;top:132mm;left:0;right:0;text-align:center;font-size:6.5pt;font-style:italic;color:#5C3310;">"May the blessings of Gomata and Sri Vadiraja Gurusarvabhouma grace you and your family always."</div>
+    <!-- Sanskrit after amount — small, dark, same weight as English -->
+    <div style="position:absolute;top:117mm;left:0;right:0;text-align:center;font-size:7pt;color:#3A1E08;letter-spacing:0.2px;">श्रीमन्मध्वाचार्य मूलमहासंस्थानम् &nbsp;·&nbsp; "May the blessings of Gomata and Sri Vadiraja Gurusarvabhouma grace you and your family always."</div>
 
-    <div style="position:absolute;bottom:12mm;left:14mm;right:14mm;display:flex;justify-content:space-between;align-items:flex-start;">
+    <div style="position:absolute;bottom:18mm;left:14mm;right:14mm;display:flex;justify-content:space-between;align-items:flex-start;">
       <div style="text-align:center;width:48mm;">
         <div style="width:38mm;height:0.7pt;background:#B8882A;margin:0 auto 2mm;"></div>
         <div style="font-size:6.5pt;color:#3A1E08;">ದಿನಾಂಕ: ${date}</div>
@@ -2177,6 +2176,9 @@ function buildCertHTML(nameKn, nameEn, amount, date, year) {
       </div>
     </div>
 
+    <!-- ಗೋ ಅರ್ಪಣಂ ವಿಶ್ವ ಮಂಗಳಂ — between signatures and footer -->
+    <div style="position:absolute;bottom:9mm;left:0;right:0;text-align:center;font-size:8pt;font-weight:700;color:#B8882A;letter-spacing:0.5px;">ಗೋ ಅರ್ಪಣಂ ವಿಶ್ವ ಮಂಗಳಂ</div>
+
     <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(135deg,#3A1E08,#5C3310);padding:2mm 5mm;display:flex;justify-content:space-between;align-items:center;">
       <div style="font-size:7pt;font-weight:700;color:#F5A44A;">ಸೋದೆ ಶ್ರೀ ವಾದಿರಾಜ ಮಠ, ಉಡುಪಿ</div>
       <div style="font-size:7pt;color:#B8882A;">गोसेवा परमो धर्मः</div>
@@ -2185,6 +2187,7 @@ function buildCertHTML(nameKn, nameEn, amount, date, year) {
   </div>`;
 
   return `<!DOCTYPE html><html><head><meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
   <style>
     @page { size:A4 portrait; margin:0; }
     * { box-sizing:border-box; margin:0; padding:0; }

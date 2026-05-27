@@ -1343,11 +1343,6 @@ function loadDashboard() {
 }
 
 function renderDashboard(d) {
-  const target = 20000000;
-  const collected = d.totalCollected || 0;
-  const pct = Math.min(100, ((collected / target) * 100)).toFixed(1);
-  const pledged = d.yesCount * 100000;
-
   let html = `
     <div class="stats-grid">
       <div class="stat-card saffron">
@@ -1368,40 +1363,73 @@ function renderDashboard(d) {
       </div>
     </div>`;
 
-  if (d.role === 'admin') {
-    html += `
-    <div class="progress-section">
-      <div class="progress-header">
-        <div class="progress-title">💰 Funds Collected</div>
-        <div class="progress-amount">₹${formatINR(collected)} collected so far</div>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" style="width:${pct}%"></div>
-      </div>
-      <div class="progress-pct">${pct}% achieved · ${d.totalTransactions} payment(s) from ${d.uniqueDonorsPaid} donor(s)</div>
-    </div>`;
-  }
+  // Admin-only transaction summary
+  if (d.role === 'admin' && d.txnSummary) {
+    const s = d.txnSummary;
 
-  if (d.role === 'admin') {
+    // Top 3 summary cards
     html += `
     <div class="card">
-      <div class="card-title">🎯 Campaign Target</div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; text-align:center;">
-        <div>
-          <div style="font-size:22px; font-weight:600; color:var(--saffron); font-family:'Lora',serif;">₹2 Crore</div>
-          <div style="font-size:12px; color:var(--text-light);">Individual Donor Target</div>
+      <div class="card-title">💰 Transaction Summary</div>
+      <div class="stats-grid" style="margin-bottom:0;">
+        <div class="stat-card green">
+          <div class="stat-value">${s.totalCount}</div>
+          <div class="stat-label">Total Transactions</div>
         </div>
-        <div>
-          <div style="font-size:22px; font-weight:600; color:var(--green); font-family:'Lora',serif;">200</div>
-          <div style="font-size:12px; color:var(--text-light);">Donors Needed</div>
+        <div class="stat-card saffron">
+          <div class="stat-value">${s.uniqueReceipts}</div>
+          <div class="stat-label">Unique Receipts</div>
         </div>
-      </div>
-      <hr class="section-divider">
-      <div style="font-size:13px; color:var(--text-light); text-align:center; font-style:italic;">
-        🤝 Let us build the shelter, together · || ಹಟ್ಟಿ ಕಟ್ಟೋಣ ||
+        <div class="stat-card earth" style="grid-column:1/-1;">
+          <div class="stat-value" style="font-size:26px;">₹${formatINR(s.totalCollected)}</div>
+          <div class="stat-label">Total Amount Collected</div>
+        </div>
       </div>
     </div>`;
+
+    // Payment mode breakdown
+    if (s.byMode && Object.keys(s.byMode).length) {
+      html += `
+      <div class="card">
+        <div class="card-title">💳 By Payment Mode</div>
+        <div class="table-wrap"><table>
+          <tr><th>Mode</th><th>Count</th><th>Amount (₹)</th></tr>`;
+      Object.entries(s.byMode).forEach(([mode, data]) => {
+        html += `<tr>
+          <td>${mode}</td>
+          <td style="text-align:center;">${data.count}</td>
+          <td style="color:var(--green);font-weight:600;">₹${formatINR(data.amount)}</td>
+        </tr>`;
+      });
+      html += `</table></div></div>`;
+    }
+
+    // Month-wise breakdown
+    if (s.byMonth && Object.keys(s.byMonth).length) {
+      const months = Object.entries(s.byMonth).sort((a,b) => a[0].localeCompare(b[0]));
+      html += `
+      <div class="card">
+        <div class="card-title">📅 Month-wise Summary</div>
+        <div class="table-wrap"><table>
+          <tr><th>Month</th><th>Count</th><th>Amount (₹)</th></tr>`;
+      months.forEach(([month, data]) => {
+        html += `<tr>
+          <td>${month}</td>
+          <td style="text-align:center;">${data.count}</td>
+          <td style="color:var(--green);font-weight:600;">₹${formatINR(data.amount)}</td>
+        </tr>`;
+      });
+      html += `</table></div></div>`;
+    }
   }
+
+  html += `
+    <div class="card">
+      <div class="card-title">🌿 || ಹಟ್ಟಿ ಕಟ್ಟೋಣ ||</div>
+      <div style="font-size:13px; color:var(--text-light); text-align:center; font-style:italic; padding:8px 0;">
+        🤝 Let us build the shelter, together
+      </div>
+    </div>`;
 
   document.getElementById('dashboardContent').innerHTML = html;
 }
